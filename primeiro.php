@@ -18,6 +18,7 @@
      // melhor usar aspas duplas no código 
      // não precisa definir se é variável, string .. 
      // echo - mais vantagem de usar em vez de print 
+     // action - que vai receber os dados do formulário
 
      echo '<p> meu nome é ' .$nome . ', e tenho  ' .$idade . ' anos </p>';
     }

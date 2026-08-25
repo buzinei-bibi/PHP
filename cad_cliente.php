@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>registro de clientes</title>
 </head>
+
 <body>
     <h1 class="text-2xl font-bold bg-purple-500 text-white flex flex-col justify-center items-center h-10">
-    CADASTRO DE CLIENTE
+        CADASTRO DE CLIENTE
     </h1>
 
 
@@ -32,7 +34,10 @@
 
     <form method="POST" action="salva_cliente.php" class="container mx-auto p-4 bg-pink-200 rounded-lg shadow-m border border-black">
         <label>nome:</label>
-        <input name="nome" placeholder="digite seu nome" class="border border-black rounded p-1">
+        <input name="nome"
+            required
+            placeholder="digite seu nome"
+            class="border border-black rounded p-1">
         <br>
 
         <label>data de nascimento:</label>
@@ -67,4 +72,5 @@
     </form>
 
 </body>
+
 </html>
