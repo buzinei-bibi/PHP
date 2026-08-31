@@ -51,19 +51,17 @@ if (isset($_POST)) {
     if (empty($cpf)) {
         echo "<p> campo 'cpf' é obrigatório </p>";
         exit;
-    }
-
-    else {
+    } else {
         if (strlen($cpf) !== 11) {
-            echo "<p>data de nascimento não pode ser maior que a data atual</p>";
+            echo "<p>CPF deve ter 11 dígitos</p>";
             exit;
         }
+    }
 
     if (strlen($whatsapp) !== 10 && strlen($whatsapp) !== 11) {
         echo "<p> whatsapp deve ter 10 ou 11 digítos </p>";
         exit;
     }
-
 
     if (empty($logradouro)) {
         echo "<p> campo 'logradouro' é obrigatório </p>";
