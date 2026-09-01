@@ -1,11 +1,6 @@
 <?php
 
-
-$time = 10000000 ;
-echo date('d/m/y  h:i:s' , strtotime('2006-02-22'));
-
-
-if (isset($_POST)) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = strtoupper(trim($_POST['nome'])) ?? '';
     $data_nascimento = trim($_POST['data_nascimento']) ?? '';
     $email = trim($_POST['e-mail']) ?? '';
@@ -73,8 +68,23 @@ if (isset($_POST)) {
         exit;
     }
 
+    if (empty($email)) {
+        echo "<p> campo 'e-mail' é obrigatório </p>";
+        exit;
+    } else {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            echo "<p> e-mail inválido </p>";
+            exit;
+        }
+    }
+
     if (empty($bairro)) {
         echo "<p> campo 'bairro' é obrigatório </p>";
+        exit;
+    }
+
+    if (!empty($whatsapp) && strlen($whatsapp) !== 10 && strlen($whatsapp) !== 11) {
+        echo "<p> whatsapp deve ter 10 ou 11 digítos </p>";
         exit;
     }
 
@@ -88,7 +98,7 @@ if (isset($_POST)) {
         exit;
     }
 
-    if (empty($cep)) {
+    if (empty($cep) || (strlen($cep) !== 8 && strlen($cep) !== 9)) {
         echo "<p> campo 'cep' é obrigatório </p>";
         exit;
     }
@@ -105,4 +115,6 @@ if (isset($_POST)) {
     echo "<p>e-mail: $email</p>";
     echo "<p>whatsapp: $whatsapp</p>";
     echo "<p>endereço completo: $logradouro, $número, $complemento, $bairro, $cidade, $estado, $cep</p>";
+} else {
+    header('Location:./cad_clientes.php');
 }
