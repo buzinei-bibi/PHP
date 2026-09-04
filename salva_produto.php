@@ -1,45 +1,73 @@
- <?php
-    
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        echo "<p></p>";
-        $nome_produto = trim($_POST['nome_produto'] ?? '');
-        $descrição = trim($_POST['descrição']) ?? '';
-        $categoria = (trim($_POST['categoria'])) ?? '';
-        $preço = trim($_POST['preço']) ?? '';
-        $quantidade = trim($_POST['quantidade']) ?? '';
-        $produto_ativo = trim($_POST['produto_ativo'] ?? '' ) ;
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $produto = trim($_POST['produto'] ?? '');
+    $descrição = trim($_POST['descrição'] ?? '');
+    $categoria = trim($_POST['categoria'] ?? '');
+    $preço = trim($_POST['preço'] ?? '');
+    $quantidade = trim($_POST['quantidade'] ?? '');
+    $ativo = trim($_POST['ativo'] ?? '');
+
+    if (empty($produto)) {
+        echo "<p>'nome do produto' é obrigatório </p>";
+        exit;
     } else {
-        $nome_produto = '';
-        $descrição = '';
-        $categoria = '';
-        $preço = '';
-        $quantidade = '';
-        $produto_ativo = '';
+        if (strlen($produto) < 3) {
+            echo "<p>'nome do produto' deve ter no mínimo 3 caracteres </p>";
+            exit;
+        }
     }
 
-    if (empty($nome_produto) || (strlen($nome_produto) < 3 )) {
-        echo "<p> campo 'nome do produto' é obrigatório </p>";
+    if ($preço === '') {
+        echo "<p>'preço' é obrigatório </p>";
         exit;
+    } else {
+        if (!is_numeric($preço) || $preço < 1) {
+            echo "<p>'preço' deve ser no mínimo 1 real </p>";
+            exit;
+        }
     }
 
     if (strlen($descrição) > 200) {
-        echo "<p> descrição deve ter no máximo 200 caracteres </p>";
+        echo "<p>'descrição' deve ter no máximo 200 caracteres </p>";
         exit;
     }
 
-    if (empty($preço) || !is_numeric($preço) || $preço < 0) {
-        echo "<p> campo 'preço' é obrigatório </p>";
+    if (empty($categoria)) {
+        echo "<p>'categoria' é obrigatório </p>";
+        exit;
+    } else {
+        $categorias = ['hambúrguer', 'bebida', 'sobremesa', 'acompanhamento'];
+        if (!in_array($categoria, $categorias)) {
+            echo "<p>'categoria' inválida </p>";
+            exit;
+        }
+    }
+
+    if ($quantidade === '') {
+        echo "<p>'quantidade' é obrigatório </p>";
+        exit;
+    } else {
+        if (!is_numeric($quantidade) || $quantidade < 1) {
+            echo "<p>a 'quantidade' deve ser no mínimo 1 produto</p>";
+            exit;
+        }
+    }
+
+    if (empty($ativo)) {
+        echo "<p>produto precisa informar se 'ativo' ou não </p>";
         exit;
     }
 
-    if (empty($quantidade) || $quantidade < 0 || !is_numeric($quantidade)) {
-        echo "<p> campo 'quantidade' é obrigatório </p>";
-        exit;
-    }
-    
-    if (empty($produto_ativo) || !in_array($produto_ativo, ['sim', 'não'])) {
-        echo "<p> campo 'produto' é obrigatório </p>";
-        exit;
-    }
-
-    header('Location:./cad_produto.php');
+    echo "
+            <h1>dados recebidos:</h1>
+            <p>nome do produto: " . htmlspecialchars($produto) . " </p>
+            <p>descrição: " . htmlspecialchars($descrição) . " </p>
+            <p>categoria do produto: " . htmlspecialchars($categoria) . " </p>
+            <p>preço do produto: " . htmlspecialchars($preço) . " </p>
+            <p>quantidade do produto: " . htmlspecialchars($quantidade) . " </p>
+            <p>produto ativo?: " . htmlspecialchars($ativo) . " </p>
+        ";
+} else {
+    header('Location: ./cad_produto.php');
+    exit;
+}
