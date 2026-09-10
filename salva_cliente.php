@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p> campo 'e-mail' é obrigatório </p>";
         exit;
     } else {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<p> e-mail inválido </p>";
             exit;
         }

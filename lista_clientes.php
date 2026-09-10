@@ -65,14 +65,14 @@ $clientes = [
                     </thead>
                     <tbody>
                         <?php
-                         foreach ($clientes as $item) {
+                        foreach ($clientes as $item) {
                             echo '
                             <tr>
-                            <td class="px-5 py-3 text-slate-400">'.$item['id'].'</td>
-                                <td class="px-5 py-3 text-slate-700">'.$item['nome'].'</td>
-                                <td class="px-5 py-3 text-slate-600">'.$item['nascimento'].'</td>
-                                <td class="px-5 py-3 text-slate-600">'.$item['cpf'].'</td>
-                                <td class="px-5 py-3 text-slate-600">'.$item['whatsapp'].'</td>
+                            <td class="px-5 py-3 text-slate-400">' . $item['id'] . '</td>
+                                <td class="px-5 py-3 text-slate-700">' . $item['nome'] . '</td>
+                                <td class="px-5 py-3 text-slate-600">' . $item['nascimento'] . '</td>
+                                <td class="px-5 py-3 text-slate-600">' . $item['cpf'] . '</td>
+                                <td class="px-5 py-3 text-slate-600">' . $item['whatsapp'] . '</td>
                                 <td class="px-5 py-3">
                                  <div class="flex justify-end gap-2">
                                     <a href="editar_pedido.php?id=1"
@@ -116,4 +116,5 @@ $clientes = [
     </div>
 
 </body>
+
 </html>
