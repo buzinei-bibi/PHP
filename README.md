@@ -21,4 +21,3 @@ o exercício é dividido em páginas, cada uma com uma função:
 - como cadastrar, listar, editar e excluir registros (crud)
 - como organizar um exercício em várias páginas
 - que ainda tenho muito a melhorar, como validação e segurança
-]
